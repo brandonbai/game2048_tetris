@@ -1,4 +1,4 @@
-package game;
+package com.github.brandonbai.game;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -7,13 +7,13 @@ import javax.swing.JButton;
 import javax.swing.border.TitledBorder;
 
 /**
- * ×Ô¶¨Òå°´Å¥Àà
+ * è‡ªå®šä¹‰æŒ‰é’®ç±»
  */
 public class MyButton extends JButton {
 	private static final long serialVersionUID = 1L;
 	
 	/**
-	 * ¹¹Ôì·½·¨
+	 * æž„é€ æ–¹æ³•
 	 */
 	public MyButton(String text, Color backColor) {
 
@@ -21,6 +21,6 @@ public class MyButton extends JButton {
 		setForeground(Color.white);
 		setBackground(backColor);
 		setBorder(new TitledBorder(""));
-		setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 20));
+		setFont(new Font("å¾®è½¯é›…é»‘", Font.PLAIN, 20));
 	}
 }
