@@ -1,4 +1,4 @@
-package game;
+package com.github.brandonbai.game;
 
 import java.awt.Color;
 import java.awt.FlowLayout;
@@ -17,47 +17,47 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
- * Ö÷½çÃæ
+ * ä¸»ç•Œé¢
  */
 public class MainPanel extends JPanel implements ActionListener {
 	private static final long serialVersionUID = 1L;
-	//Ö÷½çÃæÉÏµÄÄ£Ê½°´Å¥
+	//ä¸»ç•Œé¢ä¸Šçš„æ¨¡å¼æŒ‰é’®
 	private MyButton dropButton, classicButton;
-	//¾­µäÄ£Ê½Ãæ°å
+	//ç»å…¸æ¨¡å¼é¢æ¿
 	public ClassicPanel classicPanel;
-	//ÏÂÂäÄ£Ê½Ãæ°å
+	//ä¸‹è½æ¨¡å¼é¢æ¿
 	private DropPanel dropPanel;
-	//2048±êÖ¾
+	//2048æ ‡å¿—
 	private JLabel iconLabel;
-	//´°Ìå
+	//çª—ä½“
 	private static JFrame frame;
-	//ÓÎÏ·Ö÷Ãæ°å
+	//æ¸¸æˆä¸»é¢æ¿
 	private static MainPanel mainPanel;
-	private static final String DROP_STYLE = "2048/ÏÂÂäÄ£Ê½";
-	private static final String CLASSIC_STYLE = "2048/¾­µäÄ£Ê½";
+	private static final String DROP_STYLE = "2048/ä¸‹è½æ¨¡å¼";
+	private static final String CLASSIC_STYLE = "2048/ç»å…¸æ¨¡å¼";
 	public static void main(String[] args) {
-		//ĞÂ½¨´°Ìå¶ÔÏó
+		//æ–°å»ºçª—ä½“å¯¹è±¡
 		frame = new JFrame("2048");
 		frame.setIconImage(new ImageIcon(MainPanel.class.getResource("gameicon.png")).getImage());
-		//´°Ìå´óĞ¡
+		//çª—ä½“å¤§å°
 		frame.setSize(460, 680);
-		//´°Ìå¾ÓÖĞ
+		//çª—ä½“å±…ä¸­
 		frame.setLocationRelativeTo(null);
-		//´°Ìå´óĞ¡²»¿É±ä
+		//çª—ä½“å¤§å°ä¸å¯å˜
 		frame.setResizable(false);
-		//Ä¬ÈÏµÄ¹Ø±Õ²Ù×÷
+		//é»˜è®¤çš„å…³é—­æ“ä½œ
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//ĞÂ½¨Ö÷Ãæ°å ¶ÔÏó
+		//æ–°å»ºä¸»é¢æ¿ å¯¹è±¡
 		mainPanel = new MainPanel();
-		//È¥µôÃæ°åÄ¬ÈÏ²¼¾Ö
+		//å»æ‰é¢æ¿é»˜è®¤å¸ƒå±€
 		mainPanel.setLayout(new FlowLayout(1, 200, 90));
-		//Ãæ°å±³¾°ÑÕÉ«
+		//é¢æ¿èƒŒæ™¯é¢œè‰²
 		mainPanel.setBackground(new Color(247, 239, 230));
-		//°ÑÃæ°åÌí¼Óµ½´°ÌåÖĞ
+		//æŠŠé¢æ¿æ·»åŠ åˆ°çª—ä½“ä¸­
 		frame.add(mainPanel);
-		//´°Ìå¿É¼û
+		//çª—ä½“å¯è§
 		frame.setVisible(true);
-		//Ö÷½çÃæµÄ¿ØÖÆ·½·¨
+		//ä¸»ç•Œé¢çš„æ§åˆ¶æ–¹æ³•
 		mainPanel.run();
 		frame.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
@@ -72,27 +72,27 @@ public class MainPanel extends JPanel implements ActionListener {
 		});
 	}
 	/**
-	 * ¹¹Ôì·½·¨
+	 * æ„é€ æ–¹æ³•
 	 */
 	public MainPanel() {
 
 		Color color = new Color(206, 170, 132);
 		
-		dropButton = new MyButton("ÏÂ Âä Ä£ Ê½", color);
-		classicButton = new MyButton("¾­ µä Ä£ Ê½", color);
+		dropButton = new MyButton("ä¸‹ è½ æ¨¡ å¼", color);
+		classicButton = new MyButton("ç» å…¸ æ¨¡ å¼", color);
 		
 		dropPanel = new DropPanel();
 		classicPanel = new ClassicPanel();
 		zujian();
 	}
-	/**¸÷×é¼ş*/
+	/**å„ç»„ä»¶*/
 	public void zujian() {
 		
 		iconLabel = new JLabel("2048");
 		iconLabel.setFont(new Font("Impact",Font.BOLD,108));
 		iconLabel.setForeground(new Color(173, 113, 66));
 		add(iconLabel);
-		Font font = new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 27);
+		Font font = new Font("å¾®è½¯é›…é»‘", Font.PLAIN, 27);
 		dropButton.addActionListener(this);
 		dropButton.setFont(font);
 		dropPanel.setBounds(0, 0, 460, 680);
@@ -104,9 +104,9 @@ public class MainPanel extends JPanel implements ActionListener {
 		add(classicButton);
 		
 	}
-	/**ÓÎÏ·ÔËĞĞ¼°¿ØÖÆ·½·¨*/
+	/**æ¸¸æˆè¿è¡ŒåŠæ§åˆ¶æ–¹æ³•*/
 	public void run() {
-		//Ö÷¿ØÖÆÁ÷³Ì
+		//ä¸»æ§åˆ¶æµç¨‹
 		Timer timer = new Timer();
 		timer.schedule(new TimerTask() {
 			public void run() {
@@ -114,7 +114,7 @@ public class MainPanel extends JPanel implements ActionListener {
 			}
 		}, 0, 20);
 	}
-	/**·µ»ØÖ÷½çÃæµÄ·½·¨*/
+	/**è¿”å›ä¸»ç•Œé¢çš„æ–¹æ³•*/
 	public void back() {
 		if(classicPanel.getState() == 0 || dropPanel.getState() == 0) {
 			frame.setTitle("2048");
@@ -128,7 +128,7 @@ public class MainPanel extends JPanel implements ActionListener {
 			repaint();
 		}
 	}
-	/**°´Å¥¼àÌı*/
+	/**æŒ‰é’®ç›‘å¬*/
 	public void actionPerformed(ActionEvent e) {
 		removeAll();
 		if(e.getSource() == classicButton) {
