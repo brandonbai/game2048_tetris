@@ -1,6 +1,6 @@
-package game;
+package com.github.brandonbai.game;
 
-import game.MyButton;
+import com.github.brandonbai.game.MyButton;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -21,61 +21,61 @@ import java.util.TimerTask;
 import javax.swing.JPanel;
 
 /**
- * ¾­µäÄ£Ê½µÄÃæ°å
+ * ç»å…¸æ¨¡å¼çš„é¢æ¿
  */
 public class ClassicPanel extends JPanel implements ActionListener {
 	private static final long serialVersionUID = 1L;
 	private MyButton backButton,restartButton;
 	Random random = new Random();
-	//×´Ì¬
+	//çŠ¶æ€
 	private int state = 1;
-	//·µ»Ø°´Å¥ÓëÖØĞÂ¿ªÊ¼°´Å¥
-	//¿ØÖÆ2»ò4Éú³ÉµÄÊı×Ö
+	//è¿”å›æŒ‰é’®ä¸é‡æ–°å¼€å§‹æŒ‰é’®
+	//æ§åˆ¶2æˆ–4ç”Ÿæˆçš„æ•°å­—
 	private int APPEAR = 0;
 	private int appear = 0;
-	//ÓÃÓÚ´æ·Å·½¸ñÉÏµÄÊı×ÖµÄÊı×é
+	//ç”¨äºå­˜æ”¾æ–¹æ ¼ä¸Šçš„æ•°å­—çš„æ•°ç»„
 	private int  [][] number ;
-	//ÓÃÀ´ÅĞ¶ÏÊÇ·ñÒÆ¶¯»ò±ä»¯µÄÊı×é
+	//ç”¨æ¥åˆ¤æ–­æ˜¯å¦ç§»åŠ¨æˆ–å˜åŒ–çš„æ•°ç»„
 	private int [][] NUMBER;
-	//ÓÃÓÚ´æ·Å±³¾°ÑÕÉ«µÄÊı×é
+	//ç”¨äºå­˜æ”¾èƒŒæ™¯é¢œè‰²çš„æ•°ç»„
 	Color[][] colors;
 	Cell cell ;
-	/**ÎèÌ¨Ãæ°åµÄ¿í¸ß*/
+	/**èˆå°é¢æ¿çš„å®½é«˜*/
 	public static final int PANEL_WIDTH = 424;
 	public static final int PANEL_HEIGHT = 424;
-	/**Ğ¡·½¸ñµÄ¿í¸ß*/
+	/**å°æ–¹æ ¼çš„å®½é«˜*/
 	public static final int CELL_WIDTH = 100;
 	public static final int CELL_HEIGHT = 100;
-	//ÓÃÓÚ¿ØÖÆ·½ÏòµÄÊı×Ö
+	//ç”¨äºæ§åˆ¶æ–¹å‘çš„æ•°å­—
 	public static final int UP = 1;
 	public static final int DOWN =2;
 	public static final int RIGHT =3;
 	public static final int LEFT = 4;
 	int dir = 0;
-	//¿ØÖÆÊı×ÖÏà¼ÓµÄÊı×Ö
+	//æ§åˆ¶æ•°å­—ç›¸åŠ çš„æ•°å­—
 	public static final int UP_ADD=5;
 	public static final int DOWN_ADD=6;
 	public static final int LEFT_ADD=7;
 	public static final int RIGHT_ADD=8;
 	int number_add = 0;
-	//µ±Ç°·ÖÊı
+	//å½“å‰åˆ†æ•°
 	private int score = 0;
-	//×î¸ß·Ö
+	//æœ€é«˜åˆ†
 	int mostScore;
-	//numberÊı×éµÄ·ÖÊıµÄ×ÜºÍ
+	//numberæ•°ç»„çš„åˆ†æ•°çš„æ€»å’Œ
 	private int sums ;
 	/**
-	 * ¹¹Ôì·½·¨
+	 * æ„é€ æ–¹æ³•
 	 */
 	public ClassicPanel() {
 		
 			Color backColor = new Color(255, 158, 90);
 			
-			backButton = new MyButton("·µ»Ø", backColor);
+			backButton = new MyButton("è¿”å›", backColor);
 			backButton.setBounds(310, 100, 110, 30);
 			backButton.addActionListener(this);
 			
-			restartButton = new MyButton("ÖØĞÂ¿ªÊ¼", backColor);
+			restartButton = new MyButton("é‡æ–°å¼€å§‹", backColor);
 			restartButton.setBounds(180, 100, 110, 30);
 			restartButton.addActionListener(this);
 			this.add(backButton);
@@ -85,38 +85,38 @@ public class ClassicPanel extends JPanel implements ActionListener {
 		
 	}
 	/**
-	 * »­µÄÖ÷·½·¨
+	 * ç”»çš„ä¸»æ–¹æ³•
 	 */
 	public void paint(Graphics g) {
 		super.paint(g);
 		paintScore(g);
 		paintCellArea(g);
 		if(state == 2){
-			//»­ÓÎÏ·½áÊøÊ±µÄ»­Ãæ
+			//ç”»æ¸¸æˆç»“æŸæ—¶çš„ç”»é¢
 			paintGameOver(g);
 		}
 	}
 
-	/**»­·½¸ñÇøµÄ±³¾°*/
+	/**ç”»æ–¹æ ¼åŒºçš„èƒŒæ™¯*/
 	public void paintCellArea(Graphics g) {
 		
-			//ÉèÖÃ±³¾°·½¸ñ¿òÑÕÉ«
+			//è®¾ç½®èƒŒæ™¯æ–¹æ ¼æ¡†é¢œè‰²
 			g.setColor(new Color(227, 179, 155));
-			//»­±³¾°·½¸ñ¿ò
+			//ç”»èƒŒæ™¯æ–¹æ ¼æ¡†
 			g.fillRect(11, 138, PANEL_WIDTH, PANEL_HEIGHT);
-			//ÉèÖÃ±³¾°Ğ¡·½¸ñÑÕÉ«
+			//è®¾ç½®èƒŒæ™¯å°æ–¹æ ¼é¢œè‰²
 			for(int i = 0; i < 4; i++) {
 				for(int j = 0; j < 4; j++) {
 					g.setColor(new Color(243,223,214));
-					//»­Ğ¡·½¸ñ±³¾°
+					//ç”»å°æ–¹æ ¼èƒŒæ™¯
 					if(number[i][j]!=0){
 						cell= new Cell(number[i][j]);
 						g.setColor(cell.getColor());
 						g.fillRoundRect(15+i*105, 142+j*105, CELL_WIDTH, CELL_HEIGHT, 10, 10);
 						String str  = "" + number[i][j];
 						g.setColor(Color.BLACK);
-						//Êı×Ö´óĞ¡
-						g.setFont(new Font("»ªÎÄĞÂÎº", Font.PLAIN, 30));
+						//æ•°å­—å¤§å°
+						g.setFont(new Font("åæ–‡æ–°é­", Font.PLAIN, 30));
 						int l = str.length();
 						g.drawString(str, 15+i*105+(5-l)*10,142+j*105+60);
 						
@@ -128,38 +128,38 @@ public class ClassicPanel extends JPanel implements ActionListener {
 			}
 		
 	}
-	/**»­·ÖÊıµÈÏÔÊ¾ĞÅÏ¢*/
+	/**ç”»åˆ†æ•°ç­‰æ˜¾ç¤ºä¿¡æ¯*/
 	public void paintScore(Graphics g) {
 		g.setColor(new Color(227, 179, 155));
-		//»­µ±Ç°·ÖÊı¿ò
+		//ç”»å½“å‰åˆ†æ•°æ¡†
 		g.fillRoundRect(180, 3, 110, 70, 11, 11);
-		//»­×î¸ß·Ö¿ò
+		//ç”»æœ€é«˜åˆ†æ¡†
 		g.fillRoundRect(310, 3, 110, 70, 11, 11);
 		g.setColor(new Color(239, 198, 0));
-		//»­Í¼±ê
+		//ç”»å›¾æ ‡
 		g.fillRoundRect(25, 3, 130, 120, 12, 12);
 		g.setColor(Color.white);
-		g.setFont(new Font("Î¢ÈíÑÅºÚ",Font.PLAIN,20));
-		g.drawString("µ±Ç°·ÖÊı", 195, 30);
+		g.setFont(new Font("å¾®è½¯é›…é»‘",Font.PLAIN,20));
+		g.drawString("å½“å‰åˆ†æ•°", 195, 30);
 		
 		g.drawString(""+score, 200, 57);
-		g.drawString("×î¸ß·Ö", 335, 30);
+		g.drawString("æœ€é«˜åˆ†", 335, 30);
 		g.drawString(""+mostScore, 335, 57);
 		g.setFont(new Font("Impact",Font.PLAIN,48));
 		g.drawString("2048", 40, 50);
 		g.setFont(new Font("Impact",Font.BOLD,36));
 		g.drawString("4 * 4", 50, 90);
 	}
-	//»­ÓÎÏ·½áÊøµÄ·½·¨
+	//ç”»æ¸¸æˆç»“æŸçš„æ–¹æ³•
 	public void paintGameOver(Graphics g) {
 		g.setColor(new Color(255, 255, 255, 150));
 		g.fillRect(11, 138, PANEL_WIDTH, PANEL_HEIGHT);
 		g.setColor(new Color(148, 117, 99));
-		g.setFont(new Font("Î¢ÈíÑÅºÚ",Font.BOLD,59));
+		g.setFont(new Font("å¾®è½¯é›…é»‘",Font.BOLD,59));
 		g.drawString("Game Over !", 39, 320);
 	}
 	/**
-	 * ¼àÌıµÄ·½·¨
+	 * ç›‘å¬çš„æ–¹æ³•
 	 */
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==backButton ) {
@@ -173,7 +173,7 @@ public class ClassicPanel extends JPanel implements ActionListener {
 			setState(0);
 		}else if(e.getSource()==restartButton ) {
 			state = 1;
-			//Ò»¸öÎª¿ÕµÄÊı×é
+			//ä¸€ä¸ªä¸ºç©ºçš„æ•°ç»„
 			number = new int[4][4];
 			APPEAR=0;
 			appear=0;
@@ -191,7 +191,7 @@ public class ClassicPanel extends JPanel implements ActionListener {
 		}
 	}
 	/**
-	 * ÔËĞĞÓÎÏ·µÄÖ÷·½·¨
+	 * è¿è¡Œæ¸¸æˆçš„ä¸»æ–¹æ³•
 	 */
 	public void go(){
 		try {
@@ -225,36 +225,36 @@ public class ClassicPanel extends JPanel implements ActionListener {
 		Timer timer = new Timer();
 		timer.schedule(new TimerTask(){
 			public void run() {
-				//Éú³É2»òÕß4
+				//ç”Ÿæˆ2æˆ–è€…4
 				appearAction();
-				//½«number¸³Öµ¸øNUMBER
+				//å°†numberèµ‹å€¼ç»™NUMBER
 				giveAction();
-				//¶¯Ò»ÏÂ
+				//åŠ¨ä¸€ä¸‹
 				stepAction();
-				//ÅĞ¶ÏÊÇ·ñ·¢Éú±ä»¯
+				//åˆ¤æ–­æ˜¯å¦å‘ç”Ÿå˜åŒ–
 				judgeAction();
 				try {
 					bigestScore();
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-				//ÅĞ¶ÏÓÎÏ·ÊÇ·ñ½áÊø
+				//åˆ¤æ–­æ¸¸æˆæ˜¯å¦ç»“æŸ
 				gameOverAction();
 				repaint();
 			}
 		}, 0, 20);
 	}
 	/**
-	 * Ëæ»úÉú³É2»ò4µÄ·½·¨
+	 * éšæœºç”Ÿæˆ2æˆ–4çš„æ–¹æ³•
 	 */
 	public void appearAction(){
 		int i = random.nextInt(4);
 		int j = random.nextInt(4);	
 		int a = random.nextInt(3);
-		//ÅĞ¶ÏÊÇ·ñ»áÖØµş
+		//åˆ¤æ–­æ˜¯å¦ä¼šé‡å 
 		if(APPEAR==0&&appear==0){
 			if(this.isExit(i, j)==true){
-				//Èç¹ûaÎª0£¬Éú³É4,ÆäËûµÄÉú³É2
+				//å¦‚æœaä¸º0ï¼Œç”Ÿæˆ4,å…¶ä»–çš„ç”Ÿæˆ2
 				if(a==0||a==1){
 					number[i][j]=2;
 				}else{
@@ -268,7 +268,7 @@ public class ClassicPanel extends JPanel implements ActionListener {
 		
 	}
 	/**
-	 * ÅĞ¶ÏĞ¡·½¿éÊÇ·ñÔÚÒÑ¾­ÓĞ·½¿éµÄµØ·½Éú²ú
+	 * åˆ¤æ–­å°æ–¹å—æ˜¯å¦åœ¨å·²ç»æœ‰æ–¹å—çš„åœ°æ–¹ç”Ÿäº§
 	 */
 	public boolean isExit(int i ,int j) {
 		boolean IsExit = false;
@@ -278,7 +278,7 @@ public class ClassicPanel extends JPanel implements ActionListener {
 		return IsExit;
 	}
 	/**
-	 * ¸³Öµ
+	 * èµ‹å€¼
 	 */
 	public void giveAction(){
 		for(int i =0;i<4;i++){
@@ -288,7 +288,7 @@ public class ClassicPanel extends JPanel implements ActionListener {
 		}
 	}
 	/**
-	 * ÅĞ¶ÏÊÇ·ñ·¢Éú±ä»¯
+	 * åˆ¤æ–­æ˜¯å¦å‘ç”Ÿå˜åŒ–
 	 */
 	public void judgeAction(){
 		for(int i = 0 ;i<4;i++){
@@ -300,12 +300,12 @@ public class ClassicPanel extends JPanel implements ActionListener {
 		}
 	}
 	/**
-	 * ÏÈÒÆ¶¯ ÔÙÏà¼Ó  ÔÙÒÆ¶¯
+	 * å…ˆç§»åŠ¨ å†ç›¸åŠ   å†ç§»åŠ¨
 	 */
-	//Êı×Ö×ßÒ»²½
+	//æ•°å­—èµ°ä¸€æ­¥
 	public void step(){
-		/**Êı×ÖÒÆ¶¯*/
-		//ÉÏ
+		/**æ•°å­—ç§»åŠ¨*/
+		//ä¸Š
 		if(dir==UP){
 			for(int i = 0;i<4;i++){
 				for(int j =0;j<3;j++){
@@ -315,7 +315,7 @@ public class ClassicPanel extends JPanel implements ActionListener {
 					}
 				}
 			}
-		}//ÏÂ
+		}//ä¸‹
 		else if(dir == DOWN) {
 			for(int i = 3;i>-1;i--){
 				for(int j = 3;j>0;j--){
@@ -325,7 +325,7 @@ public class ClassicPanel extends JPanel implements ActionListener {
 					}
 				}
 			}
-		}//×ó
+		}//å·¦
 		else if(dir ==LEFT){
 			for(int i =0;i<3;i++){
 				for(int j = 0;j<4;j++){
@@ -335,7 +335,7 @@ public class ClassicPanel extends JPanel implements ActionListener {
 					}
 				}
 			}
-		}//ÓÒ
+		}//å³
 		else if(dir == RIGHT) {
 			for(int i = 3;i>0;i--){
 				for(int j =3;j>-1;j--){
@@ -347,10 +347,10 @@ public class ClassicPanel extends JPanel implements ActionListener {
 			}
 		}
 	}
-	//½«Êı×ÖÏà¼Ó·â×°³ÉÒ»¸ö·½·¨
+	//å°†æ•°å­—ç›¸åŠ å°è£…æˆä¸€ä¸ªæ–¹æ³•
 	public void numberAdd(){
-		/**Êı×ÖÏà¼Ó*/
-		//°´ÉÏÊ±
+		/**æ•°å­—ç›¸åŠ */
+		//æŒ‰ä¸Šæ—¶
 		if(number_add==UP_ADD){
 			for(int i = 0;i<4;i++){
 				for(int j =0;j<3;j++){
@@ -361,7 +361,7 @@ public class ClassicPanel extends JPanel implements ActionListener {
 					}
 				}
 			}
-		}//µ±°´ÏÂÊ±
+		}//å½“æŒ‰ä¸‹æ—¶
 		else if(number_add == DOWN_ADD) {
 			for(int i = 3;i>-1;i--){
 				for(int j = 3;j>0;j--){
@@ -373,7 +373,7 @@ public class ClassicPanel extends JPanel implements ActionListener {
 				}
 			}
 		}
-		//µ±°´×óÊ±
+		//å½“æŒ‰å·¦æ—¶
 		else if(number_add ==LEFT_ADD){
 			for(int i =0;i<3;i++){
 				for(int j = 0;j<4;j++){
@@ -385,7 +385,7 @@ public class ClassicPanel extends JPanel implements ActionListener {
 				}
 			}
 		}
-		//µ±°´ÓÒÊ±
+		//å½“æŒ‰å³æ—¶
 		else if(number_add == RIGHT_ADD) {
 			for(int i = 3;i>0;i--){
 				for(int j =3;j>-1;j--){
@@ -399,36 +399,36 @@ public class ClassicPanel extends JPanel implements ActionListener {
 		}
 		number_add = 0;
 	}
-	//½«µÚÒ»´ÎÒÆ¶¯·â×°³ÉÒ»¸ö·½·¨
+	//å°†ç¬¬ä¸€æ¬¡ç§»åŠ¨å°è£…æˆä¸€ä¸ªæ–¹æ³•
 	public void firstMove(){
 		step();
 		step();
 		step();
 	}
-	//½«µÚ¶ş´ÎÒÆ¶¯·â×°³ÉÒ»¸ö·½·¨
+	//å°†ç¬¬äºŒæ¬¡ç§»åŠ¨å°è£…æˆä¸€ä¸ªæ–¹æ³•
 	public void secondMove(){
 		firstMove();
 		dir = 0;
 	}
-	//½«ÉÏÃæÈı¸ö·½·¨·â×°³ÉÒ»¸ö·½·¨
+	//å°†ä¸Šé¢ä¸‰ä¸ªæ–¹æ³•å°è£…æˆä¸€ä¸ªæ–¹æ³•
 	public int [][] stepAction(){
 		try {
 			Thread.sleep(70);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		/**ÏÈÒÆ¶¯*/
+		/**å…ˆç§»åŠ¨*/
 		firstMove();
-		/**ÔÙÏà¼Ó*/
+		/**å†ç›¸åŠ */
 		numberAdd();
-		/**ÔÙÒÆ¶¯*/
+		/**å†ç§»åŠ¨*/
 		secondMove();
 		return number;
 	}
 	
 /**
- * »ñÈ¡ÎÄ¼şÖĞ±£´æµÄ×î¸ß·Ö
- * ÅĞ¶Ï×î¸ß·ÖºÍµ±Ç°·ÖÊıµÄ´óĞ¡£¬Èôµ±Ç°·ÖÊı´ó£¬ÔòÌæ»»
+ * è·å–æ–‡ä»¶ä¸­ä¿å­˜çš„æœ€é«˜åˆ†
+ * åˆ¤æ–­æœ€é«˜åˆ†å’Œå½“å‰åˆ†æ•°çš„å¤§å°ï¼Œè‹¥å½“å‰åˆ†æ•°å¤§ï¼Œåˆ™æ›¿æ¢
  */
 	public void bigestScore() throws IOException{
 		BufferedReader br = new BufferedReader(new FileReader("gamedata/mostScore.txt"));
@@ -445,7 +445,7 @@ public class ClassicPanel extends JPanel implements ActionListener {
 		}
 	}
 	/**
-	 * ±£´æµ±Ç°·ÖÊı
+	 * ä¿å­˜å½“å‰åˆ†æ•°
 	 * @throws IOException 
 	 */
 	public void scoreSave() throws IOException{
@@ -454,7 +454,7 @@ public class ClassicPanel extends JPanel implements ActionListener {
 		pw.close();
 	}
 	/**
-	 *¶ÁÈ¡ÎÄ¼şÖĞµÄ·ÖÊı 
+	 *è¯»å–æ–‡ä»¶ä¸­çš„åˆ†æ•° 
 	 * @throws IOException 
 	 */
 	public void scoreRead() throws IOException{
@@ -466,7 +466,7 @@ public class ClassicPanel extends JPanel implements ActionListener {
 		}
 	}
 	/**
-	 * ½«numberĞ´ÈëNumber.TxtÎÄ¼şÖĞ
+	 * å°†numberå†™å…¥Number.Txtæ–‡ä»¶ä¸­
 	 * @throws IOException 
 	 */
 	public void numberWrite() throws IOException{
@@ -481,7 +481,7 @@ public class ClassicPanel extends JPanel implements ActionListener {
 		pw.close();
 	}
 	/**
-	 * ½«Number.txtÖĞµÄÖµ¶ÁÈ¡³öÀ´£¬¸³Öµ¸ønumber
+	 * å°†Number.txtä¸­çš„å€¼è¯»å–å‡ºæ¥ï¼Œèµ‹å€¼ç»™number
 	 */
 	public void numberRead() throws IOException{
 		BufferedReader bf = new BufferedReader(new FileReader("gamedata/Number.txt"));
@@ -500,11 +500,11 @@ public class ClassicPanel extends JPanel implements ActionListener {
 			}
 		}
 		bf.close();
-		//ÅĞ¶ÏÊÇ·ñÉú³É2»ò4
+		//åˆ¤æ–­æ˜¯å¦ç”Ÿæˆ2æˆ–4
 		this.isAllZero();
 	}
 	/**
-	 * Í¨¹ıÅĞ¶ÏÊÇ·ñnumberµÄ¸÷¸öÊı¶¼Îª0£¬À´ÅĞ¶ÏÊÇ·ñĞèÒªÉú³É2»ò4
+	 * é€šè¿‡åˆ¤æ–­æ˜¯å¦numberçš„å„ä¸ªæ•°éƒ½ä¸º0ï¼Œæ¥åˆ¤æ–­æ˜¯å¦éœ€è¦ç”Ÿæˆ2æˆ–4
 	 */
 	public void isAllZero(){
 		
@@ -523,14 +523,14 @@ public class ClassicPanel extends JPanel implements ActionListener {
 		}
 	}
 	/**
-	 *ÅĞ¶ÏÓÎÏ·ÊÇ·ñ½áÊøµÄ·½·¨ 
+	 *åˆ¤æ–­æ¸¸æˆæ˜¯å¦ç»“æŸçš„æ–¹æ³• 
 	 */
 	public void gameOverAction(){
 		if(this.upAndDown() == true && this.leftAndRight() == true){
 			state = 2;
 		}
 	}
-	//ÅĞ¶Ï×óÓÒÖ®¼äÖª·ñÏàµÈ
+	//åˆ¤æ–­å·¦å³ä¹‹é—´çŸ¥å¦ç›¸ç­‰
 	public boolean upAndDown(){
 		boolean isNotEqual = true; 
 		for(int i = 0;i<number.length-1;i++){
@@ -542,7 +542,7 @@ public class ClassicPanel extends JPanel implements ActionListener {
 		}
 		return isNotEqual;
 	}
-	//ÅĞ¶ÏÉÏÏÂÖ®¼äÊÇ·ñÏàµÈ
+	//åˆ¤æ–­ä¸Šä¸‹ä¹‹é—´æ˜¯å¦ç›¸ç­‰
 	public boolean leftAndRight(){
 		boolean isNotEqual = true;
 		for(int i =0;i<number.length;i++){
