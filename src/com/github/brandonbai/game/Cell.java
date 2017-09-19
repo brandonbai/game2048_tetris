@@ -1,28 +1,28 @@
-package game;
+package com.github.brandonbai.game;
 
 import java.awt.Color;
 
 /**
- * ÏÂÂäÄ£Ê½µÄ·½¸ñÀà
+ * ä¸‹è½æ¨¡å¼çš„æ–¹æ ¼ç±»
  */
 public class Cell {
-	//·½¸ñµÄÊı×Ö
+	//æ–¹æ ¼çš„æ•°å­—
 	private int number;
-	//·½¸ñµÄX×ø±ê
+	//æ–¹æ ¼çš„Xåæ ‡
 	private int x;
-	//·½¸ñµÄY×ø±ê
+	//æ–¹æ ¼çš„Yåæ ‡
 	private int y;
-	//·½¸ñµÄ¿í
+	//æ–¹æ ¼çš„å®½
 	private int width;
-	//·½¸ñµÄ¸ß
+	//æ–¹æ ¼çš„é«˜
 	private int height;
-	//·½¸ñµÄÑÕÉ«
+	//æ–¹æ ¼çš„é¢œè‰²
 	private Color color;
-	//ÏÂÂäÄ£Ê½·½¸ñ´óĞ¡
+	//ä¸‹è½æ¨¡å¼æ–¹æ ¼å¤§å°
 	public static final int SIZE = 59;
 	
 	/**
-	 * ¹¹Ôì·½·¨
+	 * æ„é€ æ–¹æ³•
 	 */
 	public Cell(int num) {
 		this.number = num;
