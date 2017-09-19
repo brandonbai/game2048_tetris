@@ -1,6 +1,6 @@
-package game;
+package com.github.brandonbai.game;
 
-import game.MyButton;
+import com.github.brandonbai.game.MyButton;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -23,29 +23,29 @@ import java.util.TimerTask;
 import javax.swing.JPanel;
 
 /**
- * ÏÂÂäÄ£Ê½µÄÃæ°å
+ * ä¸‹è½æ¨¡å¼çš„é¢æ¿
  * 
  */
 public class DropPanel extends JPanel implements ActionListener {
 	private static final long serialVersionUID = 1L;
-	//·µ»Ø°´Å¥ºÍÔİÍ£°´Å¥
+	//è¿”å›æŒ‰é’®å’Œæš‚åœæŒ‰é’®
 	private MyButton backButton, pauseButton;
-	//ÓÎÏ··½¸ñÊı×é
+	//æ¸¸æˆæ–¹æ ¼æ•°ç»„
 	private Cell[][] cells = new Cell[8][6];
-	//ÏÂÒ»¸öÂäÏÂµÄ·½¸ñ
+	//ä¸‹ä¸€ä¸ªè½ä¸‹çš„æ–¹æ ¼
 	private Cell nextCell;
-	//µ±Ç°ÓÎÏ··ÖÊı
+	//å½“å‰æ¸¸æˆåˆ†æ•°
 	private int nowScore;
-	//¶¨ÒåÓÎÏ·×î¸ß·ÖÊı
+	//å®šä¹‰æ¸¸æˆæœ€é«˜åˆ†æ•°
 	private int topScore;
-	//ÓÎÏ·ÔËĞĞµÄÈı¸ö×´Ì¬
+	//æ¸¸æˆè¿è¡Œçš„ä¸‰ä¸ªçŠ¶æ€
 	private static final int RUNNING = 1;
 	private static final int PAUSE = 2;
 	private static final int GAMEOVER = 3;
-	//ÓÎÏ·×´Ì¬
+	//æ¸¸æˆçŠ¶æ€
 	private int state = 1;
 	/**
-	 * ¹¹Ôì·½·¨
+	 * æ„é€ æ–¹æ³•
 	 */
 	public DropPanel() {
 		
@@ -72,39 +72,39 @@ public class DropPanel extends JPanel implements ActionListener {
 			e.printStackTrace();
 		}
 	}
-	/**ÓÎÏ·ÔËĞĞµÄ·½·¨*/
+	/**æ¸¸æˆè¿è¡Œçš„æ–¹æ³•*/
 	public void run() {
-		//¼üÅÌ¼àÌı
+		//é”®ç›˜ç›‘å¬
 		keyListener();
-		//Éú³ÉÏÂÒ»¸öÂäÏÂµÄ·½¸ñ
+		//ç”Ÿæˆä¸‹ä¸€ä¸ªè½ä¸‹çš„æ–¹æ ¼
 		createAction();
-		//·½¸ñ½øÈëÓÎÏ·Çø
+		//æ–¹æ ¼è¿›å…¥æ¸¸æˆåŒº
 		enterAction();
 			Timer timer = new Timer();
 			timer.schedule(new TimerTask() {
 				public void run() {
-						//·½¸ñÏÂÂä¼°ºÏ²¢
+						//æ–¹æ ¼ä¸‹è½åŠåˆå¹¶
 						addAction();
 				}
 			}, 100, 20);
 	}
-	/**¼üÅÌ¼àÌı*/
+	/**é”®ç›˜ç›‘å¬*/
 	private void keyListener() {
-		//»ñÈ¡½¹µã
+		//è·å–ç„¦ç‚¹
 		this.requestFocus();
-		//¼üÅÌ¼àÌı
+		//é”®ç›˜ç›‘å¬
 		this.addKeyListener(new KeyAdapter() {
 			 public void keyPressed(KeyEvent e) {
 				 int code = e.getKeyCode();
 				 if(state == RUNNING) {
 					 if(code == 37) {
-						 //·½¸ñ×óÒÆ
+						 //æ–¹æ ¼å·¦ç§»
 						 leftAciton();
 					 }else if(code == 39) {
-						 //·½¸ñÓÒÒÆ
+						 //æ–¹æ ¼å³ç§»
 						 rightAciton();
 					 }else if(code == 40) {
-						 //·½¸ñÏÂÒÆ
+						 //æ–¹æ ¼ä¸‹ç§»
 						 downAction();
 					 }
 					 repaint();
@@ -120,7 +120,7 @@ public class DropPanel extends JPanel implements ActionListener {
 			 }
 		});
 	}
-	/**·½¸ñ×óÒÆµÄ·½·¨*/
+	/**æ–¹æ ¼å·¦ç§»çš„æ–¹æ³•*/
 	private void leftAciton() {
 		for(int i = 0; i < cells.length-1; i++) {
 			for(int j = 1; j < cells[i].length; j++) {
@@ -134,7 +134,7 @@ public class DropPanel extends JPanel implements ActionListener {
 			}
 		}
 	}
-	/**·½¸ñÓÒÒÆµÄ·½·¨*/
+	/**æ–¹æ ¼å³ç§»çš„æ–¹æ³•*/
 	private void rightAciton() {
 		for(int i = 0; i < cells.length-1; i++) {
 			for(int j = 0; j < cells[i].length-1; j++) {
@@ -148,7 +148,7 @@ public class DropPanel extends JPanel implements ActionListener {
 			}
 		}
 	}
-	/**·½¸ñÏÂÒÆµÄ·½·¨*/
+	/**æ–¹æ ¼ä¸‹ç§»çš„æ–¹æ³•*/
 	private void downAction() {
 		for(int i = 0; i < cells.length-1; i++) {
 			for(int j = 0; j < cells[i].length; j++) {
@@ -160,7 +160,7 @@ public class DropPanel extends JPanel implements ActionListener {
 			}
 		}
 	}
-	/**·½¸ñÏÂÂä¼°ºÏ²¢µÄ·½·¨*/
+	/**æ–¹æ ¼ä¸‹è½åŠåˆå¹¶çš„æ–¹æ³•*/
 	private void addAction() {
 		for(int j = 0; j < cells[0].length; j++) {
 			for(int i = 0; i < cells.length; i++) {
@@ -176,9 +176,9 @@ public class DropPanel extends JPanel implements ActionListener {
 						repaint();
 						continue;
 					}
-					//µÚÒ»ÀàºÏ²¢Çé¿ö
+					//ç¬¬ä¸€ç±»åˆå¹¶æƒ…å†µ
 					if(i < cells.length-1 && j > 0 && j < cells[i].length-1) {
-						//µÚËÄÖÖºÏ²¢Çé¿ö
+						//ç¬¬å››ç§åˆå¹¶æƒ…å†µ
 						if(cells[i][j].getNumber() == cells[i][j-1].getNumber()
 								&& cells[i][j].getNumber() != cells[i][j+1].getNumber()
 								&& cells[i][j].getNumber() != cells[i+1][j].getNumber()) {
@@ -186,7 +186,7 @@ public class DropPanel extends JPanel implements ActionListener {
 							cells[i][j-1] = new Cell(0, i, j-1);
 							nowScore += cells[i][j].getNumber();
 						}
-						//µÚÈıÖÖºÏ²¢Çé¿ö
+						//ç¬¬ä¸‰ç§åˆå¹¶æƒ…å†µ
 						if(cells[i][j].getNumber() != cells[i][j-1].getNumber()
 								&& cells[i][j].getNumber() == cells[i][j+1].getNumber()
 								&& cells[i][j].getNumber() != cells[i+1][j].getNumber()) {
@@ -194,7 +194,7 @@ public class DropPanel extends JPanel implements ActionListener {
 							cells[i][j+1] = new Cell(0, i, j+1);
 							nowScore += cells[i][j].getNumber();
 						}
-						//µÚ¶şÖÖºÏ²¢Çé¿ö
+						//ç¬¬äºŒç§åˆå¹¶æƒ…å†µ
 						if(cells[i][j].getNumber() == cells[i][j-1].getNumber()
 								&& cells[i][j].getNumber() == cells[i][j+1].getNumber()
 								&& cells[i][j].getNumber() != cells[i+1][j].getNumber()) {
@@ -203,7 +203,7 @@ public class DropPanel extends JPanel implements ActionListener {
 							cells[i][j+1] = new Cell(0, i, j+1);
 							nowScore += cells[i][j].getNumber();
 						}
-						//µÚÎåÖÖºÏ²¢Çé¿ö
+						//ç¬¬äº”ç§åˆå¹¶æƒ…å†µ
 						if(cells[i][j].getNumber() != cells[i][j-1].getNumber()
 								&& cells[i][j].getNumber() != cells[i][j+1].getNumber()
 								&& cells[i][j].getNumber() == cells[i+1][j].getNumber()) {
@@ -211,7 +211,7 @@ public class DropPanel extends JPanel implements ActionListener {
 							cells[i][j] = new Cell(0, i, j);
 							nowScore += cells[i+1][j].getNumber();
 						}
-						//µÚÁùÖÖºÏ²¢Çé¿ö
+						//ç¬¬å…­ç§åˆå¹¶æƒ…å†µ
 						if(cells[i][j].getNumber() == cells[i][j-1].getNumber()
 								&& cells[i][j].getNumber() != cells[i][j+1].getNumber()
 								&& cells[i][j].getNumber() == cells[i+1][j].getNumber()) {
@@ -220,7 +220,7 @@ public class DropPanel extends JPanel implements ActionListener {
 							cells[i][j-1] = new Cell(0, i, j-1);
 							nowScore += cells[i+1][j].getNumber();
 						}
-						//µÚÆßÖÖºÏ²¢Çé¿ö
+						//ç¬¬ä¸ƒç§åˆå¹¶æƒ…å†µ
 						if(cells[i][j].getNumber() != cells[i][j-1].getNumber()
 								&& cells[i][j].getNumber() == cells[i][j+1].getNumber()
 								&& cells[i][j].getNumber() == cells[i+1][j].getNumber()) {
@@ -229,7 +229,7 @@ public class DropPanel extends JPanel implements ActionListener {
 							cells[i][j+1] = new Cell(0, i, j+1);
 							nowScore += cells[i+1][j].getNumber();
 						}
-						//µÚÒ»ÖÖºÏ²¢Çé¿ö
+						//ç¬¬ä¸€ç§åˆå¹¶æƒ…å†µ
 						if(cells[i][j].getNumber() == cells[i][j-1].getNumber()
 								&& cells[i][j].getNumber() == cells[i][j+1].getNumber()
 								&& cells[i][j].getNumber() == cells[i+1][j].getNumber()) {
@@ -239,83 +239,83 @@ public class DropPanel extends JPanel implements ActionListener {
 							cells[i][j+1] = new Cell(0, i, j+1);
 							nowScore += cells[i+1][j].getNumber();
 						}
-					//µÚ¶şÀàºÏ²¢Çé¿ö	
+					//ç¬¬äºŒç±»åˆå¹¶æƒ…å†µ	
 					}else if(i < cells.length-1 && j == cells[i].length-1) {
-						//µÚ°ËÖÖºÏ²¢Çé¿ö 
+						//ç¬¬å…«ç§åˆå¹¶æƒ…å†µ 
 						if(cells[i][j].getNumber() == cells[i][j-1].getNumber()
 								&& cells[i][j].getNumber() == cells[i+1][j].getNumber()) {
 							cells[i+1][j] = new Cell(cells[i][j].getNumber()*2*2, i+1, j);
 							cells[i][j] = new Cell(0, i, j);
 							cells[i][j-1] = new Cell(0, i, j-1);
 							nowScore += cells[i+1][j].getNumber();
-						 }//µÚ¾ÅÖÖºÏ²¢Çé¿ö
+						 }//ç¬¬ä¹ç§åˆå¹¶æƒ…å†µ
 						 if(cells[i][j].getNumber() == cells[i][j-1].getNumber()
 								&& cells[i][j].getNumber() != cells[i+1][j].getNumber()) {
 							cells[i][j] = new Cell(cells[i][j-1].getNumber()*2, i, j);
 							cells[i][j-1] = new Cell(0, i, j-1);
 							nowScore += cells[i][j].getNumber();
-						 }//µÚÊ®ÖÖºÏ²¢Çé¿ö
+						 }//ç¬¬åç§åˆå¹¶æƒ…å†µ
 						 if(cells[i][j].getNumber() != cells[i][j-1].getNumber()
 								&& cells[i][j].getNumber() == cells[i+1][j].getNumber()) {
 							cells[i+1][j] = new Cell(cells[i][j].getNumber()*2, i+1, j);
 							cells[i][j] = new Cell(0, i, j);
 							nowScore += cells[i+1][j].getNumber();
 						 }
-					//µÚÈıÀàºÏ²¢Çé¿ö	 
+					//ç¬¬ä¸‰ç±»åˆå¹¶æƒ…å†µ	 
 					}else if(i < cells.length-1 && j == 0) {
-						//µÚÊ®Ò»ÖÖºÏ²¢Çé¿ö
+						//ç¬¬åä¸€ç§åˆå¹¶æƒ…å†µ
 						if(cells[i][j].getNumber() == cells[i][j+1].getNumber()
 								&& cells[i][j].getNumber() == cells[i+1][j].getNumber()) {
 							cells[i+1][j] = new Cell(cells[i][j].getNumber()*2*2, i+1, j);
 							cells[i][j] = new Cell(0, i, j);
 							cells[i][j+1] = new Cell(0, i, j+1);
 							nowScore += cells[i+1][j].getNumber();
-						}//µÚÊ®¶şÖÖºÏ²¢Çé¿ö
+						}//ç¬¬åäºŒç§åˆå¹¶æƒ…å†µ
 						if(cells[i][j].getNumber() == cells[i][j+1].getNumber()
 								&& cells[i][j].getNumber() != cells[i+1][j].getNumber()) {
 							cells[i][j] = new Cell(cells[i][j+1].getNumber()*2, i, j);
 							cells[i][j+1] = new Cell(0, i, j+1);
 							nowScore += cells[i][j].getNumber();
-						}//µÚÊ®ÈıÖÖºÏ²¢Çé¿ö
+						}//ç¬¬åä¸‰ç§åˆå¹¶æƒ…å†µ
 						if(cells[i][j].getNumber() != cells[i][j+1].getNumber()
 								&& cells[i][j].getNumber() == cells[i+1][j].getNumber()) {
 							cells[i+1][j] = new Cell(cells[i][j].getNumber()*2, i+1, j);
 							cells[i][j] = new Cell(0, i, j);
 							nowScore += cells[i+1][j].getNumber();
 						}
-					//µÚËÄÀàºÏ²¢Çé¿ö	
+					//ç¬¬å››ç±»åˆå¹¶æƒ…å†µ	
 					}else if(i == cells.length-1 &&  j > 0 && j < cells[i].length-1) {
-						//µÚÊ®ËÄÖÖºÏ²¢Çé¿ö
+						//ç¬¬åå››ç§åˆå¹¶æƒ…å†µ
 						if(cells[i][j].getNumber() == cells[i][j-1].getNumber()
 								&& cells[i][j].getNumber() == cells[i][j+1].getNumber()) {
 							cells[i][j] = new Cell(cells[i][j-1].getNumber()*2*2, i, j);
 							cells[i][j-1] = new Cell(0, i, j-1);
 							cells[i][j+1] = new Cell(0, i, j+1);
 							nowScore += cells[i][j].getNumber();
-						}//µÚÊ®ÎåÖÖºÏ²¢Çé¿ö
+						}//ç¬¬åäº”ç§åˆå¹¶æƒ…å†µ
 						if(cells[i][j].getNumber() != cells[i][j-1].getNumber()
 								&& cells[i][j].getNumber() == cells[i][j+1].getNumber()) {
 							cells[i][j] = new Cell(cells[i][j+1].getNumber()*2, i, j);
 							cells[i][j+1] = new Cell(0, i, j+1);
 							nowScore += cells[i][j].getNumber();
-						}//µÚÊ®ÁùÖÖºÏ²¢Çé¿ö
+						}//ç¬¬åå…­ç§åˆå¹¶æƒ…å†µ
 						if(cells[i][j].getNumber() == cells[i][j-1].getNumber()
 								&& cells[i][j].getNumber() != cells[i][j+1].getNumber()) {
 							cells[i][j] = new Cell(cells[i][j-1].getNumber()*2, i, j);
 							cells[i][j-1] = new Cell(0, i, j-1);
 							nowScore += cells[i][j].getNumber();
 						}
-					//µÚÎåÀàºÏ²¢Çé¿ö	
+					//ç¬¬äº”ç±»åˆå¹¶æƒ…å†µ	
 					}else if(i == cells.length-1 && j == cells[i].length-1) {
-						//µÚÊ®ÆßÖÖºÏ²¢Çé¿ö
+						//ç¬¬åä¸ƒç§åˆå¹¶æƒ…å†µ
 						if(cells[i][j].getNumber() == cells[i][j-1].getNumber()) {
 							cells[i][j] = new Cell(cells[i][j-1].getNumber()*2, i, j);
 							cells[i][j-1] = new Cell(0, i, j-1);
 							nowScore += cells[i][j].getNumber();
 						}
-					//µÚÁùÀàºÏ²¢Çé¿ö	
+					//ç¬¬å…­ç±»åˆå¹¶æƒ…å†µ	
 					}else if(i == cells.length-1 && j == 0) {
-						//µÚÊ®°ËÖÖºÏ²¢Çé¿ö
+						//ç¬¬åå…«ç§åˆå¹¶æƒ…å†µ
 						if(cells[i][j].getNumber() == cells[i][j+1].getNumber()) {
 							cells[i][j] = new Cell(cells[i][j+1].getNumber()*2, i, j);
 							cells[i][j+1] = new Cell(0, i, j+1);
@@ -326,14 +326,14 @@ public class DropPanel extends JPanel implements ActionListener {
 			}
 		}
 		repaint();
-		//Èç¹û·½¸ñÈ«²¿ÂäÏÂÔò²úÉúĞÂµÄ·½¸ñ
+		//å¦‚æœæ–¹æ ¼å…¨éƒ¨è½ä¸‹åˆ™äº§ç”Ÿæ–°çš„æ–¹æ ¼
 		if(!isNoDroped())
 			enterAction();
 		if(isGameOver())
 			state = GAMEOVER;
 		repaint();
 	}
-	/**ÅĞ¶ÏÊÇ·ñ»¹ÓĞÎ´ÂäÏÂµÄ·½¸ñ*/
+	/**åˆ¤æ–­æ˜¯å¦è¿˜æœ‰æœªè½ä¸‹çš„æ–¹æ ¼*/
 	private boolean isNoDroped() {
 		for(int i = 0; i < cells.length-1; i++) {
 			for(int j = 0; j < cells[i].length; j++) {
@@ -348,7 +348,7 @@ public class DropPanel extends JPanel implements ActionListener {
 		}
 		return false;
 	}
-	/**ÏÂÒ»¸ö·½¸ñ½øÈëÓÎÏ·ÇøµÄ·½·¨*/
+	/**ä¸‹ä¸€ä¸ªæ–¹æ ¼è¿›å…¥æ¸¸æˆåŒºçš„æ–¹æ³•*/
 	private void enterAction() {
 		if(cells[0][3].getNumber() == 0) {
 			cells[0][3] = new Cell(nextCell.getNumber(), 0, 3);
@@ -361,13 +361,13 @@ public class DropPanel extends JPanel implements ActionListener {
 			repaint();
 		}
 	}
-	/**Éú³ÉÏÂÒ»¸öÂäÏÂµÄ·½¸ñ*/
+	/**ç”Ÿæˆä¸‹ä¸€ä¸ªè½ä¸‹çš„æ–¹æ ¼*/
 	private void createAction() {
 		Random random = new Random();
 		int num = random.nextInt(6);
 		nextCell = new Cell((int)(Math.pow(2, num+1)));
 	}
-	/**ÅĞ¶ÏÓÎÏ·ÊÇ·ñ½áÊø*/
+	/**åˆ¤æ–­æ¸¸æˆæ˜¯å¦ç»“æŸ*/
 	private boolean isGameOver() {
 		for(int i = 0; i < cells.length; i++) {
 			if(cells[i][3].getNumber() == 0 || i < cells.length-1 
@@ -384,15 +384,15 @@ public class DropPanel extends JPanel implements ActionListener {
 	}
 	public void paint(Graphics g) {
 		super.paint(g);
-		//»­±³¾°
+		//ç”»èƒŒæ™¯
 		paintBG(g);
-		//»­·½¸ñ
+		//ç”»æ–¹æ ¼
 		paintCell(g);
 		if(state == GAMEOVER) {
 			paintGameOver(g) ;
 		}
 	}
-	/**»­ÓÎÏ·½áÊø*/
+	/**ç”»æ¸¸æˆç»“æŸ*/
 	public void paintGameOver(Graphics g) {
 		g.setColor(new Color(255, 255, 255, 150));
 		g.fillRect(0, 130, 460, 680);
@@ -400,25 +400,25 @@ public class DropPanel extends JPanel implements ActionListener {
 		g.setFont(new Font("Impact", Font.BOLD, 70));
 		g.drawString("Game Over", 39, 360);
 	}
-	/**»­±³¾°*/
+	/**ç”»èƒŒæ™¯*/
 	public void paintBG(Graphics g) {
 		g.setColor(new Color(181, 170 ,156));
-		//»­ÌáÊ¾ÏÂÒ»¸öÏÂÂäµÄ·½¸ñ±³¾°
+		//ç”»æç¤ºä¸‹ä¸€ä¸ªä¸‹è½çš„æ–¹æ ¼èƒŒæ™¯
 		g.fillRect(193, 63, 59, 59);
-		//»­µ±Ç°·ÖÊı¿ò
+		//ç”»å½“å‰åˆ†æ•°æ¡†
 		g.fillRoundRect(30, 5, 110, 70, 11, 11);
-		//»­×î¸ß·Ö¿ò
+		//ç”»æœ€é«˜åˆ†æ¡†
 		g.fillRoundRect(310, 5, 110, 70, 11, 11);
 		g.setColor(new Color(247, 247, 247));
-		g.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 17));
-		g.drawString("µ±Ç°·ÖÊı", 49, 30);
+		g.setFont(new Font("å¾®è½¯é›…é»‘", Font.PLAIN, 17));
+		g.drawString("å½“å‰åˆ†æ•°", 49, 30);
 		g.drawString("" + nowScore, 53, 57);
-		g.drawString("×î¸ß·Ö", 339, 30);
+		g.drawString("æœ€é«˜åˆ†", 339, 30);
 		g.drawString("" + topScore, 339, 57);
-		//»­ÓÎÏ·¿òµÄ±³¾°
+		//ç”»æ¸¸æˆæ¡†çš„èƒŒæ™¯
 		g.setColor(new Color(181, 170 ,156));
 		g.fillRect(41, 140, 361, 481);
-		//»­Ğ¡·½¸ñµÄ±³¾°
+		//ç”»å°æ–¹æ ¼çš„èƒŒæ™¯
 		g.setColor(new Color(206, 190, 181));
 		for(int i = 0; i<8; i++) {
 			for(int j = 0; j<6; j++) {
@@ -426,16 +426,16 @@ public class DropPanel extends JPanel implements ActionListener {
 			}
 		}
 	}
-	/**»­´øÊı×ÖµÄĞ¡·½¸ñ*/
+	/**ç”»å¸¦æ•°å­—çš„å°æ–¹æ ¼*/
 	private void paintCell(Graphics g) {
-		//»­ÏÂÒ»¸öÂäÏÂµÄ·½¸ñ
+		//ç”»ä¸‹ä¸€ä¸ªè½ä¸‹çš„æ–¹æ ¼
 		g.setColor(nextCell.getColor());
 		g.fillRect(nextCell.getX(), nextCell.getY(), nextCell.getWidth(), nextCell.getHeight());
 		g.setColor(new Color(20, 20 ,20));
-		g.setFont(new Font("µÈÏß", Font.PLAIN, 23));
+		g.setFont(new Font("ç­‰çº¿", Font.PLAIN, 23));
 		g.drawString(""+nextCell.getNumber(), nextCell.getX()+getNumLen(nextCell.getNumber()),
 				nextCell.getY()+nextCell.getHeight()*2/3);
-		//»­ÓÎÏ·ÇøµÄ·½¸ñ
+		//ç”»æ¸¸æˆåŒºçš„æ–¹æ ¼
 		for(int i = 0; i < cells.length; i++) {
 			for(int j = 0; j < cells[i].length; j++) {
 				Cell cell = cells[i][j];
@@ -444,14 +444,14 @@ public class DropPanel extends JPanel implements ActionListener {
 					g.setColor(cell.getColor());
 					g.fillRect(cell.getX(), cell.getY(), cell.getWidth(), cell.getHeight());
 					g.setColor(new Color(10, 10, 10));
-					g.setFont(new Font("µÈÏß", Font.PLAIN, 23));
+					g.setFont(new Font("ç­‰çº¿", Font.PLAIN, 23));
 					g.drawString(""+cell.getNumber(), cell.getX()+getNumLen(num), 
 							cell.getY()+cell.getHeight()*2/3);
 				}
 			}
 		}
 	}
-	/**Êı×Ö¾ÓÖĞµÄ·½·¨*/
+	/**æ•°å­—å±…ä¸­çš„æ–¹æ³•*/
 	private int getNumLen(int num) {
 		int len = 59*2/5 ;
 		if(num/1000 != 0) {
@@ -463,7 +463,7 @@ public class DropPanel extends JPanel implements ActionListener {
 		}
 		return len;
 	}
-	/**°´Å¥¼àÌı*/
+	/**æŒ‰é’®ç›‘å¬*/
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == backButton) {
 			setState(0);
@@ -477,8 +477,8 @@ public class DropPanel extends JPanel implements ActionListener {
 		}
 	}
 	/**
-	 * »ñÈ¡ÎÄ¼şÖĞ±£´æµÄ×î¸ß·Ö
-	 * ÅĞ¶Ï×î¸ß·ÖºÍµ±Ç°·ÖÊıµÄ´óĞ¡£¬Èôµ±Ç°·ÖÊı´ó£¬ÔòÌæ»»
+	 * è·å–æ–‡ä»¶ä¸­ä¿å­˜çš„æœ€é«˜åˆ†
+	 * åˆ¤æ–­æœ€é«˜åˆ†å’Œå½“å‰åˆ†æ•°çš„å¤§å°ï¼Œè‹¥å½“å‰åˆ†æ•°å¤§ï¼Œåˆ™æ›¿æ¢
 	 */
 	public void topScore() throws IOException {
 		BufferedReader br = new BufferedReader(new FileReader("gamedata/topScore.txt"));
