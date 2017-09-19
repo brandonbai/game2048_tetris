@@ -1,4 +1,4 @@
-package game;
+package com.github.brandonbai.game;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -11,26 +11,26 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 /**
- * ¹ØÓÚÎÒÃÇ½çÃæµÄÃæ°åÀà
+ * å…³äºæˆ‘ä»¬ç•Œé¢çš„é¢æ¿ç±»
  * 
  * @author Lv Wenyuan
  */
 public class AboutOurPanel extends JPanel implements ActionListener{
 	private static final long serialVersionUID = 1L;
-	//·µ»Ø°´Å¥
+	//è¿”å›æŒ‰é’®
 	private MyButton backButton;
-	//¶¨ÒåÓÎÏ·×´Ì¬
+	//å®šä¹‰æ¸¸æˆçŠ¶æ€
 	private int state = 1;
-	//´´½¨Í¼Æ¬
+	//åˆ›å»ºå›¾ç‰‡
 	private Image image;
 	/**
-	 * ¹¹Ôì·½·¨
+	 * æ„é€ æ–¹æ³•
 	 */
 	public AboutOurPanel(){
 		image = new ImageIcon(AboutOurPanel.class.getResource("JL.png")).getImage();
 		setBackground(new Color(154,72,0));
 		Color color = new Color(206, 170, 132);
-		backButton = new MyButton("·µ    »Ø",color);
+		backButton = new MyButton("è¿”    å›",color);
 		backButton.setBounds(250, 550, 150, 40);
 		backButton.addActionListener(this);
 		this.add(backButton);
@@ -38,9 +38,9 @@ public class AboutOurPanel extends JPanel implements ActionListener{
 	public void paint(Graphics g) {
 		super.paint(g);
 		g.setColor(Color.YELLOW);
-		g.setFont(new Font("Î¢ÈíÑÅºÚ",Font.BOLD,30));
-		String xiaobai = "ÏÂÂäÄ£Ê½Éè¼ÆÖÆ×÷ : ¼½·É»¢ ";
-		String lwy = "¾­µäÄ£Ê½Éè¼ÆÖÆ×÷ : ÂÀÎÄÔ¨ " ;
+		g.setFont(new Font("å¾®è½¯é›…é»‘",Font.BOLD,30));
+		String xiaobai = "ä¸‹è½æ¨¡å¼è®¾è®¡åˆ¶ä½œ : å†€é£è™ ";
+		String lwy = "ç»å…¸æ¨¡å¼è®¾è®¡åˆ¶ä½œ : å•æ–‡æ¸Š " ;
 		g.drawString(xiaobai, 30, 150);
 		g.drawString(lwy, 30, 200);
 		g.drawImage(image, 153, 300, this);
