@@ -13,4 +13,4 @@
 
 ## 下载
 
-[game2048.jar](https://github.com/brandonbai/game2048/blob/master/game2048.jar?raw=true)
+[game2048.jar](https://github.com/brandonbai/game2048/classes/artifacts/game2048_jar/game2048.jar?raw=true)
