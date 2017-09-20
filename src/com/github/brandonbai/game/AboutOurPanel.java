@@ -39,8 +39,8 @@ public class AboutOurPanel extends JPanel implements ActionListener{
 		super.paint(g);
 		g.setColor(Color.YELLOW);
 		g.setFont(new Font("微软雅黑",Font.BOLD,30));
-		String xiaobai = "下落模式设计制作 : 冀飞虎 ";
-		String lwy = "经典模式设计制作 : 吕文渊 " ;
+		String xiaobai = "下落模式设计制作 : Ji Feihu ";
+		String lwy = "经典模式设计制作 : Lv Wenyuan " ;
 		g.drawString(xiaobai, 30, 150);
 		g.drawString(lwy, 30, 200);
 		g.drawImage(image, 153, 300, this);
