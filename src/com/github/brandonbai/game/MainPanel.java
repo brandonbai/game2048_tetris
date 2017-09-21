@@ -1,17 +1,12 @@
 package com.github.brandonbai.game;
 
 import java.awt.Color;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -24,58 +19,19 @@ public class MainPanel extends JPanel implements ActionListener {
 	//主界面上的模式按钮
 	private MyButton dropButton, classicButton;
 	//经典模式面板
-	public ClassicPanel classicPanel;
+	private ClassicPanel classicPanel;
 	//下落模式面板
 	private DropPanel dropPanel;
 	//2048标志
 	private JLabel iconLabel;
-	//窗体
-	private static JFrame frame;
-	//游戏主面板
-	private static MainPanel mainPanel;
+	private JFrame frame;
 	private static final String DROP_STYLE = "2048/下落模式";
 	private static final String CLASSIC_STYLE = "2048/经典模式";
-	public static void main(String[] args) {
-		//新建窗体对象
-		frame = new JFrame("2048");
-		frame.setIconImage(new ImageIcon(MainPanel.class.getResource("gameicon.png")).getImage());
-		//窗体大小
-		frame.setSize(460, 680);
-		//窗体居中
-		frame.setLocationRelativeTo(null);
-		//窗体大小不可变
-		frame.setResizable(false);
-		//默认的关闭操作
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//新建主面板 对象
-		mainPanel = new MainPanel();
-		//去掉面板默认布局
-		mainPanel.setLayout(new FlowLayout(1, 200, 90));
-		//面板背景颜色
-		mainPanel.setBackground(new Color(247, 239, 230));
-		//把面板添加到窗体中
-		frame.add(mainPanel);
-		//窗体可见
-		frame.setVisible(true);
-		//主界面的控制方法
-		mainPanel.run();
-		frame.addWindowListener(new WindowAdapter() {
-			public void windowClosing(WindowEvent e) {
-				try {
-					mainPanel.classicPanel.scoreSave();
-					mainPanel.classicPanel.numberWrite();
-					mainPanel.dropPanel.topScore();
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
-			}
-		});
-	}
 	/**
 	 * 构造方法
 	 */
-	public MainPanel() {
-
+	public MainPanel(JFrame frame) {
+		this.frame = frame;
 		Color color = new Color(206, 170, 132);
 		
 		dropButton = new MyButton("下 落 模 式", color);
@@ -147,5 +103,43 @@ public class MainPanel extends JPanel implements ActionListener {
 		}
 		repaint();
 	}
+	public MyButton getDropButton() {
+		return dropButton;
+	}
+	public void setDropButton(MyButton dropButton) {
+		this.dropButton = dropButton;
+	}
+	public MyButton getClassicButton() {
+		return classicButton;
+	}
+	public void setClassicButton(MyButton classicButton) {
+		this.classicButton = classicButton;
+	}
+	public ClassicPanel getClassicPanel() {
+		return classicPanel;
+	}
+	public void setClassicPanel(ClassicPanel classicPanel) {
+		this.classicPanel = classicPanel;
+	}
+	public DropPanel getDropPanel() {
+		return dropPanel;
+	}
+	public void setDropPanel(DropPanel dropPanel) {
+		this.dropPanel = dropPanel;
+	}
+	public JLabel getIconLabel() {
+		return iconLabel;
+	}
+	public void setIconLabel(JLabel iconLabel) {
+		this.iconLabel = iconLabel;
+	}
+	public JFrame getFrame() {
+		return frame;
+	}
+	public void setFrame(JFrame frame) {
+		this.frame = frame;
+	}
+	
+	
 
 }
