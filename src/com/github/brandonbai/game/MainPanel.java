@@ -12,7 +12,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
- * 主界面
+ * 
+ * @Description: 主面板 
+ * @author Brandon Ji
+ * @date 2015年9月21日 下午5:11:00
+ *
  */
 public class MainPanel extends JPanel implements ActionListener {
 	private static final long serialVersionUID = 1L;

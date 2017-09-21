@@ -23,8 +23,11 @@ import java.util.TimerTask;
 import javax.swing.JPanel;
 
 /**
- * 下落模式的面板
  * 
+ * @Description: 下落模式的面板 
+ * @author Brandon Ji
+ * @date 2015年9月21日 下午5:40:53 
+ *
  */
 public class DropPanel extends JPanel implements ActionListener {
 	private static final long serialVersionUID = 1L;
@@ -67,7 +70,7 @@ public class DropPanel extends JPanel implements ActionListener {
 			}
 		}
 		try {
-			topScore();
+			updateTopScore();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -373,7 +376,7 @@ public class DropPanel extends JPanel implements ActionListener {
 			if(cells[i][3].getNumber() == 0 || i < cells.length-1 
 					&& cells[i][3].getNumber() == cells[i+1][3].getNumber()) {
 				try {
-					topScore();
+					updateTopScore();
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
@@ -480,7 +483,7 @@ public class DropPanel extends JPanel implements ActionListener {
 	 * 获取文件中保存的最高分
 	 * 判断最高分和当前分数的大小，若当前分数大，则替换
 	 */
-	public void topScore() throws IOException {
+	public void updateTopScore() throws IOException {
 		BufferedReader br = new BufferedReader(new FileReader("gamedata/topScore.txt"));
 		String str = br.readLine();
 		if(str != null) {

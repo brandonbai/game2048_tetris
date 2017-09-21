@@ -164,8 +164,8 @@ public class ClassicPanel extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==backButton ) {
 			try {
-				this.scoreSave();
-				this.numberWrite();
+				this.saveScore();
+				this.saveState();
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
@@ -179,8 +179,8 @@ public class ClassicPanel extends JPanel implements ActionListener {
 			appear=0;
 			sums  = 0;
 			try {
-				numberWrite();
-				scoreSave();
+				saveState();
+				saveScore();
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
@@ -195,8 +195,8 @@ public class ClassicPanel extends JPanel implements ActionListener {
 	 */
 	public void go(){
 		try {
-			numberRead();
-			scoreRead();
+			readState();
+			readScore();
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
@@ -234,7 +234,7 @@ public class ClassicPanel extends JPanel implements ActionListener {
 				//判断是否发生变化
 				judgeAction();
 				try {
-					bigestScore();
+					updateTopScore();
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -430,7 +430,7 @@ public class ClassicPanel extends JPanel implements ActionListener {
  * 获取文件中保存的最高分
  * 判断最高分和当前分数的大小，若当前分数大，则替换
  */
-	public void bigestScore() throws IOException{
+	public void updateTopScore() throws IOException{
 		BufferedReader br = new BufferedReader(new FileReader("gamedata/mostScore.txt"));
 		String str = br.readLine();
 		if(str!=null){
@@ -448,7 +448,7 @@ public class ClassicPanel extends JPanel implements ActionListener {
 	 * 保存当前分数
 	 * @throws IOException 
 	 */
-	public void scoreSave() throws IOException{
+	public void saveScore() throws IOException{
 		PrintWriter pw = new PrintWriter(new FileWriter("gamedata/score.txt"));
 		pw.write(score+"");
 		pw.close();
@@ -457,7 +457,7 @@ public class ClassicPanel extends JPanel implements ActionListener {
 	 *读取文件中的分数 
 	 * @throws IOException 
 	 */
-	public void scoreRead() throws IOException{
+	public void readScore() throws IOException{
 		BufferedReader br = new BufferedReader(new FileReader("gamedata/score.txt"));
 		String str = null;
 		if((str = br.readLine()) != null ) {
@@ -469,7 +469,7 @@ public class ClassicPanel extends JPanel implements ActionListener {
 	 * 将number写入Number.Txt文件中
 	 * @throws IOException 
 	 */
-	public void numberWrite() throws IOException{
+	public void saveState() throws IOException{
 		PrintWriter pw = new PrintWriter(new FileWriter("gamedata/Number.txt"));
 		StringBuffer sb = new StringBuffer();
 		for(int i = 0;i<number.length;i++){
@@ -483,7 +483,7 @@ public class ClassicPanel extends JPanel implements ActionListener {
 	/**
 	 * 将Number.txt中的值读取出来，赋值给number
 	 */
-	public void numberRead() throws IOException{
+	public void readState() throws IOException{
 		BufferedReader bf = new BufferedReader(new FileReader("gamedata/Number.txt"));
 		String str = null ;
 		if((str = bf.readLine())!=null){

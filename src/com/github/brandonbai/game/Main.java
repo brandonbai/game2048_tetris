@@ -9,6 +9,13 @@ import java.io.IOException;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
+/**
+ * 
+ * @Description: 主类
+ * @author Brandon Ji
+ * @date 2015年9月21日 下午5:13:30 
+ *
+ */
 public class Main {
 
 	//窗体
@@ -43,9 +50,9 @@ public class Main {
 		frame.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
 				try {
-					mainPanel.getClassicPanel().scoreSave();
-					mainPanel.getClassicPanel().numberWrite();
-					mainPanel.getDropPanel().topScore();
+					mainPanel.getClassicPanel().saveScore();
+					mainPanel.getClassicPanel().saveState();
+					mainPanel.getDropPanel().updateTopScore();
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
