@@ -13,7 +13,7 @@ import javax.swing.JFrame;
  * 
  * @Description: 主类
  * @author Brandon Ji
- * @date 2015年9月21日 下午5:13:30 
+ * @since 2015年9月21日 下午5:13:30 
  *
  */
 public class Main {
