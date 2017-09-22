@@ -12,8 +12,8 @@ import javax.swing.JFrame;
 /**
  * 
  * @Description: 主类
- * @author Brandon Ji
- * @since 2015年9月21日 下午5:13:30 
+ * @author Feihu Ji
+ * @since 2015年9月21日 
  *
  */
 public class Main {

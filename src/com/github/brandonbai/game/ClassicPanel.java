@@ -21,7 +21,12 @@ import java.util.TimerTask;
 import javax.swing.JPanel;
 
 /**
- * 经典模式的面板
+ * 
+ * ClassicPanel 
+ * @Description: 经典模式的面板
+ * @author Wenyuan Lv
+ * @sine 2015年10月22日
+ *
  */
 public class ClassicPanel extends JPanel implements ActionListener {
 	private static final long serialVersionUID = 1L;

@@ -14,8 +14,8 @@ import javax.swing.JPanel;
 /**
  * 
  * @Description: 主面板 
- * @author Brandon Ji
- * @since 2015年9月21日 下午5:11:00
+ * @author Feihu Ji
+ * @since 2015年9月21日
  *
  */
 public class MainPanel extends JPanel implements ActionListener {

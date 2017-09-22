@@ -7,7 +7,12 @@ import javax.swing.JButton;
 import javax.swing.border.TitledBorder;
 
 /**
- * 自定义按钮类
+ * 
+ * MyButton 
+ * @Description: 自定义按钮类
+ * @author Feihu Ji
+ * @sine 2017年9月22日
+ *
  */
 public class MyButton extends JButton {
 	private static final long serialVersionUID = 1L;

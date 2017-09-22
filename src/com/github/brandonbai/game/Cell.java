@@ -3,7 +3,11 @@ package com.github.brandonbai.game;
 import java.awt.Color;
 
 /**
- * 下落模式的方格类
+ * 
+ * @Description: 下落模式的方格类 
+ * @author Feihu Ji
+ * @sine 2015年10月22日
+ *
  */
 public class Cell {
 	//方格的数字

@@ -25,8 +25,8 @@ import javax.swing.JPanel;
 /**
  * 
  * @Description: 下落模式的面板 
- * @author Brandon Ji
- * @since 2015年9月21日 下午5:40:53 
+ * @author Feihu Ji
+ * @since 2015年9月21日 
  *
  */
 public class DropPanel extends JPanel implements ActionListener {
