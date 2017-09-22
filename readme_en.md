@@ -2,7 +2,7 @@
 A java swing written with the "2048" game.
 
 Two modes:
-Contains two modes: Classic mode and drop mode. See screenshot:
+Classic mode and drop mode. See screenshot:
 
 ### Demo
 **classic mode**             |  **Drop mode**
