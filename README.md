@@ -1,13 +1,14 @@
 # game2048
-一款用java swing写的“2048”小游戏。
+A java swing written with the "2048" game.
 
-包含两个模式：经典模式和下落模式。详见截图：
+Two modes:
+Classic mode and drop mode. See screenshot:
 
-### 示例 
-**经典模式**             |  **下落模式**
+### Demo
+**classic mode**             |  **Drop mode**
 :-------------------------:|:-------------------------:
-![经典模式](https://github.com/brandonbai/game2048/blob/master/screenshot2.gif)  |  ![下落模式](https://github.com/brandonbai/game2048/blob/master/screenshot1.gif)
+![classic mode](https://github.com/brandonbai/game2048/blob/master/screenshot2.gif)  |  ![Drop mode](https://github.com/brandonbai/game2048/blob/master/screenshot1.gif)
 
-## 下载
+## download
 
-[game2048_tetris.jar](https://github.com/brandonbai/game2048/blob/master/game2048_tetris.jar?raw=true)
+[game2048.jar](https://github.com/brandonbai/game2048/blob/master/game2048.jar?raw=true)
