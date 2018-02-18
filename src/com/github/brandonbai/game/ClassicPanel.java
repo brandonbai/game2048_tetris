@@ -62,7 +62,7 @@ public class ClassicPanel extends JPanel implements ActionListener {
 	public static final int DOWN_ADD=6;
 	public static final int LEFT_ADD=7;
 	public static final int RIGHT_ADD=8;
-	int number_add = 0;
+	int numberAdd = 0;
 	//当前分数
 	private int score = 0;
 	//最高分
@@ -92,6 +92,7 @@ public class ClassicPanel extends JPanel implements ActionListener {
 	/**
 	 * 画的主方法
 	 */
+	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
 		paintScore(g);
@@ -166,6 +167,7 @@ public class ClassicPanel extends JPanel implements ActionListener {
 	/**
 	 * 监听的方法
 	 */
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==backButton ) {
 			try {
@@ -192,7 +194,7 @@ public class ClassicPanel extends JPanel implements ActionListener {
 			go();
 			score=0;
 			dir = 0;
-			number_add =0;
+			numberAdd =0;
 		}
 	}
 	/**
@@ -207,28 +209,32 @@ public class ClassicPanel extends JPanel implements ActionListener {
 		}
 		this.requestFocus();
 		this.addKeyListener(new KeyAdapter() {
+			
+			@Override
 			public void keyPressed(KeyEvent e) {
 				APPEAR=0;
 				if(e.getKeyCode()==37){
 					dir= LEFT;
-					number_add = LEFT_ADD;
+					numberAdd = LEFT_ADD;
 				}
 				if(e.getKeyCode()==38){
 					dir = UP;
-					number_add = UP_ADD;
+					numberAdd = UP_ADD;
 				}
 				if(e.getKeyCode()==39){
 					dir = RIGHT;
-					number_add = RIGHT_ADD;
+					numberAdd = RIGHT_ADD;
 				}
 				if(e.getKeyCode()==40){
 					dir = DOWN;
-					number_add = DOWN_ADD;
+					numberAdd = DOWN_ADD;
 				}
 			}
 		});
 		Timer timer = new Timer();
 		timer.schedule(new TimerTask(){
+			
+			@Override
 			public void run() {
 				//生成2或者4
 				appearAction();
@@ -276,11 +282,11 @@ public class ClassicPanel extends JPanel implements ActionListener {
 	 * 判断小方块是否在已经有方块的地方生产
 	 */
 	public boolean isExit(int i ,int j) {
-		boolean IsExit = false;
+		boolean isExit = false;
 		if(number[i][j]==0){
-			IsExit = true;
+			isExit = true;
 		}
-		return IsExit;
+		return isExit;
 	}
 	/**
 	 * 赋值
@@ -356,7 +362,7 @@ public class ClassicPanel extends JPanel implements ActionListener {
 	public void numberAdd(){
 		/**数字相加*/
 		//按上时
-		if(number_add==UP_ADD){
+		if(numberAdd==UP_ADD){
 			for(int i = 0;i<4;i++){
 				for(int j =0;j<3;j++){
 					if(number[i][j]==number[i][j+1]){
@@ -367,7 +373,7 @@ public class ClassicPanel extends JPanel implements ActionListener {
 				}
 			}
 		}//当按下时
-		else if(number_add == DOWN_ADD) {
+		else if(numberAdd == DOWN_ADD) {
 			for(int i = 3;i>-1;i--){
 				for(int j = 3;j>0;j--){
 					if(number[i][j]==number[i][j-1]){
@@ -379,7 +385,7 @@ public class ClassicPanel extends JPanel implements ActionListener {
 			}
 		}
 		//当按左时
-		else if(number_add ==LEFT_ADD){
+		else if(numberAdd ==LEFT_ADD){
 			for(int i =0;i<3;i++){
 				for(int j = 0;j<4;j++){
 					if(number[i][j]==number[i+1][j]){
@@ -391,7 +397,7 @@ public class ClassicPanel extends JPanel implements ActionListener {
 			}
 		}
 		//当按右时
-		else if(number_add == RIGHT_ADD) {
+		else if(numberAdd == RIGHT_ADD) {
 			for(int i = 3;i>0;i--){
 				for(int j =3;j>-1;j--){
 					if(number[i][j]==number[i-1][j]){
@@ -402,7 +408,7 @@ public class ClassicPanel extends JPanel implements ActionListener {
 				}
 			}
 		}
-		number_add = 0;
+		numberAdd = 0;
 	}
 	//将第一次移动封装成一个方法
 	public void firstMove(){

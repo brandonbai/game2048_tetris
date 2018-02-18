@@ -48,6 +48,8 @@ public class Main {
 		//主界面的控制方法
 		mainPanel.run();
 		frame.addWindowListener(new WindowAdapter() {
+			
+			@Override
 			public void windowClosing(WindowEvent e) {
 				try {
 					mainPanel.getClassicPanel().saveScore();

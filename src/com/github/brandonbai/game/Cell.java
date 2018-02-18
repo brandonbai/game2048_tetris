@@ -88,6 +88,8 @@ public class Cell {
 		case 8192:
 			color = new Color(0, 0, 0);
 			break;
+			default:
+				break;
 		}
 		return color;
 	}

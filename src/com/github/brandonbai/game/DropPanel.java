@@ -85,6 +85,8 @@ public class DropPanel extends JPanel implements ActionListener {
 		enterAction();
 			Timer timer = new Timer();
 			timer.schedule(new TimerTask() {
+				
+				@Override
 				public void run() {
 						//方格下落及合并
 						addAction();
@@ -97,6 +99,8 @@ public class DropPanel extends JPanel implements ActionListener {
 		this.requestFocus();
 		//键盘监听
 		this.addKeyListener(new KeyAdapter() {
+			
+			@Override
 			 public void keyPressed(KeyEvent e) {
 				 int code = e.getKeyCode();
 				 if(state == RUNNING) {
@@ -330,10 +334,12 @@ public class DropPanel extends JPanel implements ActionListener {
 		}
 		repaint();
 		//如果方格全部落下则产生新的方格
-		if(!isNoDroped())
+		if(!isNoDroped()) {
 			enterAction();
-		if(isGameOver())
+		}
+		if(isGameOver()) {
 			state = GAMEOVER;
+		}
 		repaint();
 	}
 	/**判断是否还有未落下的方格*/
@@ -385,6 +391,8 @@ public class DropPanel extends JPanel implements ActionListener {
 		}
 		return true;
 	}
+	
+	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
 		//画背景
@@ -467,6 +475,7 @@ public class DropPanel extends JPanel implements ActionListener {
 		return len;
 	}
 	/**按钮监听*/
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == backButton) {
 			setState(0);

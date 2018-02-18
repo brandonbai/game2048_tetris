@@ -69,6 +69,8 @@ public class MainPanel extends JPanel implements ActionListener {
 		//主控制流程
 		Timer timer = new Timer();
 		timer.schedule(new TimerTask() {
+			
+			@Override
 			public void run() {
 				back();
 			}
@@ -83,12 +85,14 @@ public class MainPanel extends JPanel implements ActionListener {
 			add(dropButton);
 			add(iconLabel);
 			classicPanel.setState(1);
-			if(dropPanel.getState() == 0)
+			if(dropPanel.getState() == 0) {
 				dropPanel.setState(2);
+			}
 			repaint();
 		}
 	}
 	/**按钮监听*/
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		removeAll();
 		if(e.getSource() == classicButton) {
